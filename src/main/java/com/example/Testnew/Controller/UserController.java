@@ -57,7 +57,7 @@ public class UserController {
         if (userService.verifyLogin(phoneNumber, password)) {
             // Successful login
 //            return ResponseEntity.ok("Login successful");
-            return ResponseEntity.status(HttpStatus.OK).body("Login successful");
+            return ResponseEntity.status(HttpStatus.OK).body(phoneNumber);
         } else {
             // Failed login
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
