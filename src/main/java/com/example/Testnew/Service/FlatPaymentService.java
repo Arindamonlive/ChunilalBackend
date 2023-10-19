@@ -1,5 +1,6 @@
 package com.example.Testnew.Service;
 
+import com.example.Testnew.Entity.FlatMonthly;
 import com.example.Testnew.Entity.FlatPayment;
 import com.example.Testnew.Repository.FlatPaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ public class FlatPaymentService {
         return flatPaymentRepository.save(flatPayment);
     }
 
-    public FlatPayment saveDuesPayment(FlatPayment flatPayment, double dues){
-        return flatPaymentRepository.save(flatPayment);
-    }
+//    public FlatPayment saveDuesPayment(FlatPayment flatDetails, double dues){
+//        return flatPaymentRepository.save(flatDetails,dues);
+//    }
 
 }

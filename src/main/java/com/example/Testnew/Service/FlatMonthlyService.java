@@ -10,7 +10,7 @@ public class FlatMonthlyService {
     @Autowired
     private FlatMonthlyRepository flatMonthlyRepository;
 
-    public FlatMonthly saveMonthly(FlatMonthly flatMonthly){
+    public FlatMonthly addValue(FlatMonthly flatMonthly){
         return flatMonthlyRepository.save(flatMonthly);
     }
 }

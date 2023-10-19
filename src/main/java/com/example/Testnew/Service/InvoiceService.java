@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Service
 public class InvoiceService {
-    public void generateInvoice(FlatPayment flatPayment) {
+    public FlatPayment generateInvoice(FlatPayment flatPayment) {
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         document.addPage(page);
@@ -42,6 +42,7 @@ public class InvoiceService {
                 e.printStackTrace();
             }
         }
+        return flatPayment;
     }
 }
 

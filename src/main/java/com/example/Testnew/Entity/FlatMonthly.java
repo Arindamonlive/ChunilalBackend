@@ -1,19 +1,23 @@
 package com.example.Testnew.Entity;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
-@Table(name = "flatMonthly")
+@Table
+@Data
 public class FlatMonthly {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "flatDetails")
+    @Column
     private String flatDetails;
 
-    @Column(name = "monthlyMaintainance")
-    private double monthlyMaintainance;
+    @Column
+    private Integer monthlyMaintainance;
+
 
     // Getters and setters
 }

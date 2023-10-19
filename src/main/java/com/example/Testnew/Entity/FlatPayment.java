@@ -26,9 +26,9 @@ public class FlatPayment {
     private Timestamp timestamp;
 
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public String getInvoiceNumber() {
-        return null;
+        return getInvoiceNumber();
     }
 
     // Getters and setters
