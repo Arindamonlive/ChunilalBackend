@@ -30,5 +30,10 @@ public class FlatController {
         return flatMemberService.updateMember(flatMember);
     }
 
+    @GetMapping("/getMemberByName/{flatMemberName}")
+    public Optional<FlatMember> getFlatMemberByName(@PathVariable("flatMemberName") String flatMemberName){
+        return flatMemberService.getFlatMemberByName(flatMemberName);
+    }
+
 
 }

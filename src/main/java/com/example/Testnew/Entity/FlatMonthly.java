@@ -15,9 +15,8 @@ public class FlatMonthly {
     @Column
     private String flatDetails;
 
-    @Column
-    private Integer monthlyMaintainance;
-
+    @Column(nullable = false)
+    private Integer monthlyMaintenance;
 
     // Getters and setters
 }

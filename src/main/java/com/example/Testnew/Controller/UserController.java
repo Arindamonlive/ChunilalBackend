@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +26,11 @@ public class UserController {
     @GetMapping("/getOneUser/{id}")
     public User getOneUser(@PathVariable("id") Long id){
         return userService.getOneUser(id);
+    }
+
+    @GetMapping("/getOneUserByPhone/{phoneNumber}")
+    public Optional<User> getOneUserByPhoneNumber(@PathVariable("phoneNumber")String phoneNumber){
+        return userService.getOneUserByPhonenumber(phoneNumber);
     }
 
     @PostMapping("/add")
@@ -49,38 +53,38 @@ public class UserController {
         return userService.getPhoneNumber(id);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Map<String, String> loginData) {
-        String phoneNumber = loginData.get("username");
-        String password = loginData.get("password");
-
-        if (userService.verifyLogin(phoneNumber, password)) {
-            // Successful login
-//            return ResponseEntity.ok("Login successful");
-            return ResponseEntity.status(HttpStatus.OK).body(phoneNumber);
-        } else {
-            // Failed login
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
-        }
-
-
-    }
-
 //    @PostMapping("/login")
-//    public ResponseEntity<String> login(@RequestParam("username") String username,@RequestParam("password") String password ) {
+//    public ResponseEntity<String> login(@RequestBody Map<String, String> loginData) {
+//        String phoneNumber = loginData.get("username");
+//        String password = loginData.get("password");
 //
-//
-//        if (userService.verifyLogin(username, password)) {
+//        if (userService.verifyLogin(phoneNumber, password)) {
 //            // Successful login
 ////            return ResponseEntity.ok("Login successful");
-//            return ResponseEntity.status(HttpStatus.OK).body("Login param successful");
+//            return ResponseEntity.status(HttpStatus.OK).body(phoneNumber);
 //        } else {
 //            // Failed login
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login param failed");
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
 //        }
 //
 //
 //    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestParam("username") String username,@RequestParam("password") String password ) {
+
+
+        if (userService.verifyLogin(username, password)) {
+            // Successful login
+//            return ResponseEntity.ok("Login successful");
+            return ResponseEntity.status(HttpStatus.OK).body("Login param successful");
+        } else {
+            // Failed login
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login param failed");
+        }
+
+
+    }
 
 //    @PostMapping("/login/{username}&{password}")
 //    public ResponseEntity<String> login(@PathVariable("username") String username,@PathVariable("password") String password ) {

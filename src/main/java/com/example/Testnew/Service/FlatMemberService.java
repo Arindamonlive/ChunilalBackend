@@ -36,6 +36,8 @@ public class FlatMemberService {
         return flatMemberRepo.save(flatMember);
     }
 
-
+    public Optional<FlatMember> getFlatMemberByName(String flatMemberName){
+        return flatMemberRepo.findByFlatMemberName(flatMemberName);
+    }
 
 }

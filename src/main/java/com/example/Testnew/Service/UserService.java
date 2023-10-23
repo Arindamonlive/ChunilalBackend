@@ -23,6 +23,10 @@ public class UserService {
         return userRepo.findById(id).orElseThrow();
     }
 
+    public Optional<User> getOneUserByPhonenumber(String phoneNumber){
+        return userRepo.findByPhoneNumber(phoneNumber);
+    }
+
     public User addUser(User user){
         return userRepo.save(user);
     }

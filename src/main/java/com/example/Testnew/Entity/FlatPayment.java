@@ -1,35 +1,36 @@
 package com.example.Testnew.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.security.Timestamp;
+import java.util.Date;
 
 
 @Entity
-@Table(name = "flatPayment")
+@Table
+@Data
 public class FlatPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "flatDetails")
-    private FlatMonthly flatDetails;
+    @Column
+    private String flatDetails;
 
-    @Column(name = "paymentAmount")
-    private double paymentAmount;
+    @Column
+    private Integer paymentAmount;
 
-    @Column(name = "dues")
-    private double dues;
+    @Column
+    private Integer dues;
 
-    @Column(name = "timestamp")
-    private Timestamp timestamp;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Date createdAt;
 
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public String getInvoiceNumber() {
-        return getInvoiceNumber();
-    }
 
     // Getters and setters
 }
