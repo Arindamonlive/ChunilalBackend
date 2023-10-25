@@ -41,7 +41,9 @@ public class FlatDetailsService {
         return flatDetailsRepository.save(flatDetails);
     }
 
-
+    public FlatDetails getAmount(String flatDetails){
+        return flatDetailsRepository.findByflatDetails(flatDetails);
+    }
 //    public FlatDetails payMonthlyAmount(String flatDetails, double payment) {
 //        FlatDetails flat = flatDetailsRepository.findByFlatDetails(flatDetails);
 //
@@ -66,8 +68,8 @@ public class FlatDetailsService {
 //    }
 
 
-//        @Scheduled(cron = "*/30 * * * * *") // Runs at 1:00 AM every day, change to your desired schedule
-    @Scheduled(cron = "0 0 0 */30 * ?")
+//        @Scheduled(cron = "*/30 * * * * *") //  Run at every 30s
+    @Scheduled(cron = "0 0 0 */30 * *")
     public void updateMonthlyPayments() {
         List<FlatDetails> flatDetailsList = flatDetailsRepository.findAll();
 
@@ -75,7 +77,7 @@ public class FlatDetailsService {
             Integer currentAmount = flat.getAmount();
             Integer currentDueAmount = flat.getDueAmount();
 
-            // Add the monthly amount to due amount and reset amount
+
             flat.setDueAmount(currentDueAmount + currentAmount);
             flat.setAmount(currentAmount);
 

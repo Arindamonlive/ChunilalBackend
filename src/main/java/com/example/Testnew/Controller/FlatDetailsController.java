@@ -4,6 +4,7 @@ import com.example.Testnew.Entity.FlatDetails;
 import com.example.Testnew.Repository.FlatDetailsRepository;
 import com.example.Testnew.Service.FlatDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +14,7 @@ public class FlatDetailsController {
     @Autowired
     private FlatDetailsService flatDetailsService;
 
+    @Autowired
     private FlatDetailsRepository flatDetailsRepository;
 
     @PostMapping("/addAmount")
@@ -26,8 +28,8 @@ public class FlatDetailsController {
 //    }
 
     @GetMapping("/{flatDetails}")
-    public FlatDetails getFlatDetails(@PathVariable String flatDetails) {
-        return flatDetailsRepository.findByFlatDetails(flatDetails);
+    public FlatDetails getFlatDetails(@PathVariable("flatDetails") String flatDetails) {
+        return flatDetailsRepository.findByflatDetails(flatDetails);
     }
 }
 
