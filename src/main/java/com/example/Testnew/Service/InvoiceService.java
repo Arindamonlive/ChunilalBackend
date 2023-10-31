@@ -12,6 +12,8 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.aspectj.apache.bcel.util.ClassLoaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.text.html.Option;
 import java.io.ByteArrayOutputStream;
@@ -27,10 +29,12 @@ public class InvoiceService {
     private FlatPaymentRepository flatPaymentRepository;
 
     private FlatPayment flatPayment;
-
+//    @Autowired
     private FlatMember flatMember;
-
+    @Autowired
     private UserService userService;
+    @Autowired
+    private FlatMemberService flatMemberService;
 
 
 
@@ -263,6 +267,20 @@ public class InvoiceService {
                 String phone = null;
                 phone=flatPayment.getFlatDetails();
 
+                Optional<User> person=userService.getOneUserByPhonenumber(phone);
+                String name = null;
+                if (person.isPresent()) {
+                User user = person.get();
+                name = user.getName();}
+                Optional<FlatMember> member=flatMemberService.getFlatMemberByName(name);
+                String flatBlock = null;
+                String flatNumber = null;
+                if(member.isPresent()){
+                FlatMember flatMember =member.get();
+                flatBlock=flatMember.getBlockNumber();
+                flatNumber=flatMember.getFlatNumber();
+                }
+
                 // Set up the content for your invoice
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
                 contentStream.setLeading(14.5f);
@@ -306,9 +324,9 @@ public class InvoiceService {
                 contentStream.setFont(PDType1Font.HELVETICA, 12);
                 contentStream.beginText();
                 contentStream.newLineAtOffset(40, 690);
-                contentStream.showText("Name: ");
+                contentStream.showText("Name: "+name);
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Flat Details : ");
+                contentStream.showText("Flat Details: "+flatNumber+", Block "+flatBlock);
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Mobile Number: "+phone);
                 contentStream.endText();

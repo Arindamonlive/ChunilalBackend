@@ -85,5 +85,13 @@ public class FlatDetailsService {
         }
             System.out.println("Scheduled task completed at " + new Date());
     }
+    public FlatDetails updateDues(String flatDetails){
+        FlatDetails flat = flatDetailsRepository.findByflatDetails(flatDetails);
+
+        if (flat != null) {
+            flat.setDueAmount(0);
+            return flatDetailsRepository.save(flat);
+        }
+        return null;}
 }
 
