@@ -25,6 +25,9 @@ public class FlatPayment {
     @Column
     private Integer dues;
 
+    @Column
+    private String method;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

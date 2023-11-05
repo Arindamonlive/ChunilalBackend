@@ -20,10 +20,10 @@ public class FlatMember {
     @Column(unique = true,nullable = false)
     private String flatMemberName;
 
-    @Column(unique = true,nullable = false)
+    @Column(unique = false,nullable = false)
     private String flatNumber;
 
-    @Column(unique = true,nullable = false)
+    @Column(unique = false,nullable = false)
     private String blockNumber;
 
 

@@ -12,7 +12,7 @@ public class FlatMonthly {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(unique = true,nullable = false)
     private String flatDetails;
 
     @Column(nullable = false)

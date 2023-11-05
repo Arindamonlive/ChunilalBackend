@@ -341,7 +341,7 @@ public class InvoiceService {
                 contentStream.setFont(PDType1Font.HELVETICA, 12);
                 contentStream.beginText();
                 contentStream.newLineAtOffset(360, 690);
-                contentStream.showText("Payment Method: Online");
+                contentStream.showText("Payment Method: "+flatPayment.getMethod());
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Payment Date: " +flatPayment.getCreatedAt());
                 contentStream.newLineAtOffset(0, -20);

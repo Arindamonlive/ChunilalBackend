@@ -29,7 +29,7 @@ public class CommitteeController {
             return ResponseEntity.status(HttpStatus.OK).body("Login successful");
         } else {
             // Failed login
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Please check the Username or Password");
         }
 
 

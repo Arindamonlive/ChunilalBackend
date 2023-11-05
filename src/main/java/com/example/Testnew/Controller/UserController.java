@@ -77,10 +77,10 @@ public class UserController {
         if (userService.verifyLogin(username, password)) {
             // Successful login
 //            return ResponseEntity.ok("Login successful");
-            return ResponseEntity.status(HttpStatus.OK).body("Login param successful");
+            return ResponseEntity.status(HttpStatus.OK).body("Login successful");
         } else {
             // Failed login
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login param failed");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Please check the Username or Password");
         }
 
 
